@@ -43,7 +43,6 @@ module Devise
                 access_token = current_user.access_tokens.create!(:client => @client).token
                 bearer_token = Rack::OAuth2::AccessToken::Bearer.new(:access_token => access_token)
                 res.access_token = bearer_token
-                res.uid = current_user.id
               end
               res.approve!
             else
