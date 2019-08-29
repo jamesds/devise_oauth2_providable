@@ -14,8 +14,8 @@ module Devise
           belongs_to :user
           belongs_to :client
 
-          after_initialize :init_token, :on => :create, :unless => :token?
-          after_initialize :init_expires_at, :on => :create, :unless => :expires_at?
+          before_validation :init_token, :on => :create, :unless => :token?
+          before_validation :init_expires_at, :on => :create, :unless => :expires_at?
           validates :expires_at, :presence => true
           validates :client, :presence => true
           validates :token, :presence => true, :uniqueness => true
